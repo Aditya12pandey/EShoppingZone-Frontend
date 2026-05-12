@@ -1,0 +1,61 @@
+<div class="orders-container">
+  <h1>My Orders</h1>
+
+  <div *ngIf="loading" class="loading-state">
+    <mat-icon class="spinner">sync</mat-icon>
+    <p>Loading your orders...</p>
+  </div>
+
+  <div *ngIf="!loading && orders.length === 0" class="empty-state glass-card">
+    <mat-icon class="empty-icon">receipt_long</mat-icon>
+    <h2>No Orders Found</h2>
+    <p>You haven't placed any orders yet.</p>
+  </div>
+
+  <div *ngIf="!loading && orders.length > 0" class="orders-list">
+    <mat-accordion multi>
+      <mat-expansion-panel *ngFor="let order of orders" class="glass-card order-panel">
+        <mat-expansion-panel-header>
+            Order #{{ order.orderId }}
+          <mat-panel-description>
+            <span class="order-date">{{ order.orderDate | date:'medium' }}</span>
+            <span class="order-amount">{{ order.amountPaid | currency:'INR' }}</span>
+            <mat-chip-listbox>
+              <mat-chip [color]="getStatusColor(order.orderStatus)" selected>{{ order.orderStatus }}</mat-chip>
+            </mat-chip-listbox>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="order-details">
+          <div class="delivery-info">
+            <h3>Delivery Address</h3>
+            <p>{{ order.address.fullName }}</p>
+            <p>{{ order.address.flatNumber }}, {{ order.address.city }}</p>
+            <p>{{ order.address.state }} - {{ order.address.pincode }}</p>
+            <p>Phone: {{ order.address.mobileNumber }}</p>
+          </div>
+          
+          <mat-divider [vertical]="true" class="desktop-only"></mat-divider>
+          <mat-divider class="mobile-only"></mat-divider>
+ 
+          <div class="payment-info">
+            <h3>Payment Information</h3>
+            <p>Mode: <strong>{{ order.modeOfPayment }}</strong></p>
+            <p>Amount Paid: <strong>{{ order.amountPaid | currency:'INR' }}</strong></p>
+          </div>
+        </div>
+ 
+        <mat-divider></mat-divider>
+ 
+        <div class="items-list">
+          <h3>Items Ordered</h3>
+          <div class="item-row">
+            <span class="item-name">{{ order.quantity }}x {{ order.productName }}</span>
+            <span class="item-price">{{ order.amountPaid | currency:'INR' }}</span>
+          </div>
+        </div>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

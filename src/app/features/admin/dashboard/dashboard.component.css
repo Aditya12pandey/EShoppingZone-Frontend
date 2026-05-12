@@ -1,0 +1,140 @@
+.dashboard-container {
+  padding: 24px 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+  color: var(--primary-color);
+}
+
+.tab-content {
+  padding: 32px;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+}
+
+.admin-table {
+  width: 100%;
+  background: var(--surface-color) !important;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th.mat-header-cell {
+  color: var(--text-secondary);
+  border-bottom-color: var(--glass-border);
+}
+
+td.mat-cell {
+  color: var(--text-primary);
+  border-bottom-color: var(--glass-border);
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.status-badge.placed {
+  background-color: rgba(33, 150, 243, 0.1);
+  color: #1976d2;
+}
+
+.status-badge.shipped {
+  background-color: rgba(255, 152, 0, 0.1);
+  color: #f57c00;
+}
+
+.status-badge.delivered {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: #388e3c;
+}
+
+.status-badge.cancelled {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: #d32f2f;
+}
+
+.role-badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: inline-block;
+}
+
+.role-badge.admin {
+  background-color: rgba(233, 30, 99, 0.1);
+  color: #c2185b;
+}
+
+.role-badge.merchant {
+  background-color: rgba(156, 39, 176, 0.1);
+  color: #7b1fa2;
+}
+
+.role-badge.customer {
+  background-color: rgba(0, 188, 212, 0.1);
+  color: #0097a7;
+}
+
+.status-select {
+  width: 150px;
+  margin-top: 16px;
+}
+
+::ng-deep .status-select .mat-mdc-text-field-wrapper {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+::ng-deep .status-select .mat-mdc-select-value-text {
+  color: var(--text-primary) !important;
+}
+
+::ng-deep .status-select .mat-mdc-select-arrow {
+  color: var(--text-secondary) !important;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px;
+  text-align: center;
+}
+
+.large-icon {
+  font-size: 80px;
+  height: 80px;
+  width: 80px;
+  margin-bottom: 24px;
+  color: var(--text-secondary);
+}
+
+.empty-state h2 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.empty-state p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 48px;
+}

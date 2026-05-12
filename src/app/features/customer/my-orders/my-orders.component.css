@@ -1,0 +1,144 @@
+.orders-container {
+  padding: 24px 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+  color: var(--primary-color);
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.order-panel {
+  margin-bottom: 16px !important;
+  background: var(--surface-color) !important;
+}
+
+mat-expansion-panel-header {
+  padding: 16px 24px !important;
+  height: auto !important;
+}
+
+mat-panel-title {
+  flex-basis: 30%;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--text-primary) !important;
+}
+
+mat-panel-description {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-basis: 70%;
+  color: var(--text-secondary) !important;
+}
+
+.order-amount {
+  font-weight: 700;
+  color: var(--accent-color);
+  font-size: 1.1rem;
+}
+
+.order-details {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+}
+
+@media (min-width: 768px) {
+  .order-details {
+    flex-direction: row;
+    gap: 32px;
+  }
+}
+
+.delivery-info, .payment-info {
+  flex: 1;
+}
+
+.order-details h3, .items-list h3 {
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--primary-color);
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.order-details p {
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+}
+
+.desktop-only {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .desktop-only {
+    display: block;
+  }
+  .mobile-only {
+    display: none;
+  }
+}
+
+.items-list {
+  padding: 24px 0;
+}
+
+.item-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.item-row:last-child {
+  border-bottom: none;
+}
+
+.item-name {
+  color: var(--text-primary);
+}
+
+.item-price {
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+.empty-state, .loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 64px;
+  height: 64px;
+  width: 64px;
+  margin-bottom: 24px;
+  color: var(--text-secondary);
+}
+
+.spinner {
+  font-size: 48px;
+  height: 48px;
+  width: 48px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}

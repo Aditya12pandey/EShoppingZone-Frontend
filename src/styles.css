@@ -1,0 +1,194 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+html, body { 
+  height: 100%; 
+  margin: 0; 
+  font-family: 'Inter', sans-serif;
+}
+
+:root {
+  --primary-color: #60a5fa; /* Blue 400 */
+  --accent-color: #38bdf8; /* Sky 400 */
+  --bg-gradient-start: #020617; /* Slate 950 */
+  --bg-gradient-end: #1e3a8a; /* Blue 900 */
+  --surface-color: rgba(30, 41, 59, 0.6); /* Slate 800 semi-transparent */
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1; /* Slate 300 */
+  --heading-color: #e9d5ff; /* Lavender/Light Purple */
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+body {
+  background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+  color: var(--text-primary);
+  background-attachment: fixed;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent-color);
+}
+
+/* Global Text Visibility Overrides */
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-color) !important;
+  font-weight: 800 !important;
+}
+
+/* Ensure background-clip text doesn't show double text */
+.hero-section h1 {
+  color: transparent !important;
+}
+
+p, span, div, td, th {
+  color: var(--text-primary);
+}
+
+.main-content {
+  padding: 32px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: calc(100vh - 120px);
+}
+
+/* Angular Material Overrides for Light/Premium Theme */
+.mat-mdc-card {
+  background: var(--surface-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.mat-mdc-card-title, .mat-mdc-card-subtitle {
+  color: var(--text-primary) !important;
+  font-weight: 700 !important;
+}
+
+/* Fix for Mat-Tab Labels */
+::ng-deep .mat-mdc-tab .mdc-tab__text-label {
+  color: var(--text-secondary) !important;
+  font-weight: 600;
+}
+
+::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+  color: var(--primary-color) !important;
+  font-weight: 700;
+}
+
+::ng-deep .mat-mdc-tab-header {
+  border-bottom: 1px solid var(--glass-border) !important;
+}
+
+::ng-deep .mat-mdc-tab-group.mat-primary .mat-mdc-tab-links .mdc-tab-indicator__content--underline,
+::ng-deep .mat-mdc-tab-group.mat-primary .mat-mdc-tab-nav-bar .mdc-tab-indicator__content--underline {
+  border-color: var(--primary-color) !important;
+}
+
+.mat-toolbar.mat-primary {
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(10px);
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+/* Form Field Fixes */
+.mat-mdc-form-field-label {
+  color: var(--text-secondary) !important;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-radius: 4px 4px 0 0 !important;
+}
+
+.mat-mdc-input-element {
+  color: #000000 !important;
+}
+
+::ng-deep .mat-mdc-select-value {
+  color: #000000 !important;
+}
+
+::ng-deep .mat-mdc-select-arrow {
+  color: var(--text-secondary) !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: #0f172a !important;
+  color: var(--text-primary) !important;
+}
+
+.mat-mdc-menu-panel {
+  background-color: #0f172a !important;
+  border: 1px solid var(--glass-border) !important;
+}
+
+.mat-mdc-menu-item .mdc-list-item__primary-text {
+  color: var(--text-primary) !important;
+}
+
+/* Select Dropdown Fixes */
+/* Select Dropdown Fixes */
+.mat-mdc-select-panel,
+.mdc-menu-surface.mat-mdc-select-panel {
+  background-color: #1e40af !important; /* Blue 800 */
+  background: #1e40af !important;
+  border: 1px solid var(--glass-border) !important;
+}
+
+.mat-mdc-option {
+  color: var(--text-primary) !important;
+}
+
+.mat-mdc-option .mdc-list-item__primary-text {
+  color: var(--text-primary) !important;
+}
+
+.mat-mdc-option:hover:not(.mdc-list-item--disabled) {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) {
+  background-color: var(--primary-color) !important;
+}
+
+/* Glassmorphism Classes */
+.glass-card {
+  background: var(--surface-color) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--glass-shadow) !important;
+  color: var(--text-primary) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.15) !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-gradient-start);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}

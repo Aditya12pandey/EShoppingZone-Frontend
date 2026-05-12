@@ -1,0 +1,95 @@
+<div class="auth-container">
+  <mat-card class="glass-card auth-card register-card">
+    <mat-card-header>
+      <mat-card-title>Create an Account</mat-card-title>
+      <mat-card-subtitle>Join EShoppingZone today</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-tab-group animationDuration="0ms">
+        <!-- Customer Tab -->
+        <mat-tab label="Customer">
+          <form [formGroup]="customerForm" (ngSubmit)="onRegisterCustomer()" class="register-form">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Full Name</mat-label>
+              <input matInput formControlName="fullName">
+              <mat-error *ngIf="customerForm.get('fullName')?.hasError('required')">Full Name is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" formControlName="emailId">
+              <mat-error *ngIf="customerForm.get('emailId')?.hasError('required')">Email is required</mat-error>
+              <mat-error *ngIf="customerForm.get('emailId')?.hasError('email')">Invalid email address</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Mobile Number</mat-label>
+              <input matInput formControlName="mobileNumber">
+              <mat-error *ngIf="customerForm.get('mobileNumber')?.hasError('required')">Mobile Number is required</mat-error>
+              <mat-error *ngIf="customerForm.get('mobileNumber')?.hasError('pattern')">Must be exactly 10 digits</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Password</mat-label>
+              <input matInput [type]="hideCustomerPassword ? 'password' : 'text'" formControlName="password">
+              <button type="button" mat-icon-button matSuffix (click)="hideCustomerPassword = !hideCustomerPassword">
+                <mat-icon>{{hideCustomerPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="customerForm.get('password')?.hasError('required')">Password is required</mat-error>
+              <mat-error *ngIf="customerForm.get('password')?.hasError('minlength')">Minimum 8 characters</mat-error>
+            </mat-form-field>
+
+            <button mat-flat-button color="primary" type="submit" class="full-width submit-btn" [disabled]="customerForm.invalid || loading">
+              <mat-icon *ngIf="loading" class="spinner">sync</mat-icon>
+              {{ loading ? 'Registering...' : 'Register as Customer' }}
+            </button>
+          </form>
+        </mat-tab>
+
+        <!-- Merchant Tab -->
+        <mat-tab label="Merchant">
+          <form [formGroup]="merchantForm" (ngSubmit)="onRegisterMerchant()" class="register-form">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Full Name</mat-label>
+              <input matInput formControlName="fullName">
+              <mat-error *ngIf="merchantForm.get('fullName')?.hasError('required')">Full Name is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" formControlName="emailId">
+              <mat-error *ngIf="merchantForm.get('emailId')?.hasError('required')">Email is required</mat-error>
+              <mat-error *ngIf="merchantForm.get('emailId')?.hasError('email')">Invalid email address</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Mobile Number</mat-label>
+              <input matInput formControlName="mobileNumber">
+              <mat-error *ngIf="merchantForm.get('mobileNumber')?.hasError('required')">Mobile Number is required</mat-error>
+              <mat-error *ngIf="merchantForm.get('mobileNumber')?.hasError('pattern')">Must be exactly 10 digits</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Password</mat-label>
+              <input matInput [type]="hideMerchantPassword ? 'password' : 'text'" formControlName="password">
+              <button type="button" mat-icon-button matSuffix (click)="hideMerchantPassword = !hideMerchantPassword">
+                <mat-icon>{{hideMerchantPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="merchantForm.get('password')?.hasError('required')">Password is required</mat-error>
+            </mat-form-field>
+
+            <button mat-flat-button color="accent" type="submit" class="full-width submit-btn" [disabled]="merchantForm.invalid || loading">
+              <mat-icon *ngIf="loading" class="spinner">sync</mat-icon>
+              {{ loading ? 'Registering...' : 'Register as Merchant' }}
+            </button>
+          </form>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+
+    <mat-card-actions class="auth-actions">
+      <p>Already have an account? <a routerLink="/login">Login here</a></p>
+    </mat-card-actions>
+  </mat-card>
+</div>

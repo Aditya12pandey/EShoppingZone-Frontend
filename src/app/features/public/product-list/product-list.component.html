@@ -1,0 +1,77 @@
+<div class="product-container">
+  <!-- Pure CSS Promotional Banner -->
+  <div class="promo-banner">
+    <div class="banner-left">
+      <h1 class="main-title">Great<br>Summer<br>Sale</h1>
+      <div class="live-now-badge">LIVE NOW</div>
+      <div class="branding">
+        <span>Powered by SAMSUNG Galaxy</span>
+        <span>Co-Powered by intel CORE</span>
+      </div>
+    </div>
+    <div class="banner-right">
+      <div class="sale-live-text">Sale is Live</div>
+      <div class="prime-offer">
+        Shop with us and join with the family of India's biggest shopping platform
+      </div>
+      <div class="bank-offer">
+        <div class="hdfc-logo">HDFC BANK</div>
+        <div class="offer-text">
+          <span>10% Instant Discount*</span>
+          on Credit Cards and EASYEMI Transactions
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading-state">
+    <mat-icon class="spinner">sync</mat-icon>
+    <p>Loading products...</p>
+  </div>
+
+  <div class="product-grid" *ngIf="!loading">
+    <mat-card class="glass-card product-card" *ngFor="let product of products">
+      <img mat-card-image [src]="product.image[0] || 'https://via.placeholder.com/400x300?text=No+Image'" [alt]="product.productName" class="product-image">
+      <mat-card-content>
+        <div class="category-badge">{{ product.category }}</div>
+        <h2 class="product-title">{{ product.productName }}</h2>
+        <p class="product-price">{{ product.price | currency:'INR' }}</p>
+      </mat-card-content>
+      <mat-card-actions class="card-actions">
+        <a mat-button color="primary" [routerLink]="['/product', product.productId]">View Details</a>
+        <span class="spacer"></span>
+        <button mat-mini-fab color="accent" (click)="addToCart(product)" matTooltip="Add to Cart">
+          <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div *ngIf="!loading && products.length === 0" class="empty-state">
+    <mat-icon>inventory_2</mat-icon>
+    <p>No products found.</p>
+  </div>
+
+  <!-- Description Section -->
+  <div class="description-section" *ngIf="!loading">
+    <h2>Why Shop with EShoppingZone?</h2>
+    <div class="description-grid">
+      <div class="desc-item">
+        <h3>Premium Quality</h3>
+        <p>We source our products from verified merchants to ensure you get only the best high-quality items.</p>
+      </div>
+      <div class="desc-item">
+        <h3>Fast Delivery</h3>
+        <p>Our optimized logistics network ensures that your orders reach you in the shortest possible time.</p>
+      </div>
+      <div class="desc-item">
+        <h3>Secure Payments</h3>
+        <p>Shop with confidence using our secure payment gateway, supporting credit cards, UPI, and wallets.</p>
+      </div>
+      <div class="desc-item">
+        <h3>24/7 Support</h3>
+        <p>Our dedicated support team is always here to help you with any queries or concerns you may have.</p>
+      </div>
+    </div>
+  </div>
+</div>

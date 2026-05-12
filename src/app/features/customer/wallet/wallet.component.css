@@ -1,0 +1,145 @@
+.wallet-container {
+  padding: 24px 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+  color: var(--primary-color);
+}
+
+.wallet-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+@media (min-width: 992px) {
+  .wallet-layout {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.balance-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.statements-section {
+  flex: 2;
+}
+
+.balance-card, .topup-card, .statements-card {
+  background: var(--surface-color) !important;
+  padding: 16px;
+}
+
+.wallet-icon {
+  font-size: 40px;
+  height: 40px;
+  width: 40px;
+  color: var(--primary-color);
+  background: transparent !important;
+}
+
+mat-card-title {
+  color: var(--text-primary) !important;
+  font-size: 1.2rem;
+  margin-top: 8px;
+}
+
+.balance-amount {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-top: 16px;
+}
+
+.topup-form {
+  margin-top: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.topup-btn {
+  margin-top: 16px;
+  padding: 12px 0;
+  font-size: 1.1rem;
+}
+
+.statements-table {
+  width: 100%;
+  background: transparent !important;
+  margin-top: 16px;
+}
+
+th.mat-header-cell {
+  color: var(--text-secondary);
+  border-bottom-color: var(--glass-border);
+}
+
+td.mat-cell {
+  color: var(--text-primary);
+  border-bottom-color: var(--glass-border);
+}
+
+.credit-badge {
+  background-color: rgba(76, 175, 80, 0.2);
+  color: #81c784;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.debit-badge {
+  background-color: rgba(244, 67, 54, 0.2);
+  color: #e57373;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.credit-text {
+  color: #81c784 !important;
+  font-weight: 600;
+}
+
+.debit-text {
+  color: #e57373 !important;
+  font-weight: 600;
+}
+
+.no-statements {
+  padding: 32px 0;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px;
+  text-align: center;
+}
+
+.spinner {
+  font-size: 48px;
+  height: 48px;
+  width: 48px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}

@@ -1,0 +1,144 @@
+.cart-container {
+  padding: 24px 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+  color: var(--primary-color);
+}
+
+.cart-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+@media (min-width: 992px) {
+  .cart-layout {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.cart-items-section {
+  flex: 2;
+  padding: 24px;
+}
+
+.cart-item {
+  height: auto !important;
+  padding: 16px 0 !important;
+}
+
+.item-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.item-price {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.item-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 24px;
+}
+
+.quantity {
+  font-weight: 600;
+  font-size: 1.1rem;
+  min-width: 24px;
+  text-align: center;
+}
+
+.item-total {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  min-width: 100px;
+  text-align: right;
+}
+
+.cart-actions-bottom {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cart-summary-section {
+  flex: 1;
+  padding: 32px;
+  position: sticky;
+  top: 100px;
+}
+
+.cart-summary-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 0;
+  font-size: 1.1rem;
+}
+
+.summary-row.total {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-top: 24px;
+}
+
+.checkout-btn {
+  width: 100%;
+  margin-top: 32px;
+  padding: 12px 0;
+  font-size: 1.1rem;
+}
+
+.empty-state, .loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 64px;
+  height: 64px;
+  width: 64px;
+  margin-bottom: 24px;
+  color: var(--text-secondary);
+}
+
+.empty-state h2 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.spinner {
+  font-size: 48px;
+  height: 48px;
+  width: 48px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}

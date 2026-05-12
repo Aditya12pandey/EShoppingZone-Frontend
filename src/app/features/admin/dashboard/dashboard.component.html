@@ -1,0 +1,128 @@
+<div class="dashboard-container">
+  <h1>Admin Dashboard</h1>
+
+  <mat-tab-group animationDuration="0ms" class="glass-card">
+    
+    <mat-tab label="Manage Orders">
+      <ng-template matTabContent>
+        <div class="tab-content">
+          <h2>All Orders</h2>
+
+          <div *ngIf="ordersLoading" class="loading-container">
+            <mat-spinner diameter="40"></mat-spinner>
+          </div>
+
+          <table mat-table [dataSource]="orders" class="mat-elevation-z8 admin-table" *ngIf="!ordersLoading" [trackBy]="trackByOrderId">
+            
+            <ng-container matColumnDef="orderId">
+              <th mat-header-cell *matHeaderCellDef> Order ID </th>
+              <td mat-cell *matCellDef="let order"> {{order.orderId}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="customerId">
+              <th mat-header-cell *matHeaderCellDef> Customer ID </th>
+              <td mat-cell *matCellDef="let order"> {{order.customerId}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef> Date </th>
+              <td mat-cell *matCellDef="let order"> {{order.orderDate | date}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="amount">
+              <th mat-header-cell *matHeaderCellDef> Amount </th>
+              <td mat-cell *matCellDef="let order"> {{order.amountPaid | currency:'INR'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef> Status </th>
+              <td mat-cell *matCellDef="let order"> 
+                <span class="status-badge" [ngClass]="order.orderStatus?.toLowerCase()">
+                  {{order.orderStatus}}
+                </span>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef> Actions </th>
+              <td mat-cell *matCellDef="let order">
+                <mat-form-field appearance="outline" class="status-select">
+                  <mat-select [value]="order.orderStatus" (selectionChange)="changeOrderStatus(order.orderId, $event)">
+                    <mat-option *ngFor="let status of orderStatuses" [value]="status">
+                      {{status}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+
+          <div *ngIf="!ordersLoading && orders.length === 0" class="empty-state">
+            <mat-icon class="large-icon">receipt_long</mat-icon>
+            <p>No orders found in the system.</p>
+          </div>
+        </div>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab label="Manage Users">
+      <ng-template matTabContent>
+        <div class="tab-content">
+          <h2>All Users</h2>
+
+          <div *ngIf="usersLoading" class="loading-container">
+            <mat-spinner diameter="40"></mat-spinner>
+          </div>
+
+          <table mat-table [dataSource]="users" class="mat-elevation-z8 admin-table" *ngIf="!usersLoading" [trackBy]="trackByProfileId">
+            
+            <ng-container matColumnDef="profileId">
+              <th mat-header-cell *matHeaderCellDef> ID </th>
+              <td mat-cell *matCellDef="let user"> {{user?.profileId}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="fullName">
+              <th mat-header-cell *matHeaderCellDef> Full Name </th>
+              <td mat-cell *matCellDef="let user"> {{user?.fullName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="emailId">
+              <th mat-header-cell *matHeaderCellDef> Email </th>
+              <td mat-cell *matCellDef="let user"> {{user?.emailId}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="role">
+              <th mat-header-cell *matHeaderCellDef> Role </th>
+              <td mat-cell *matCellDef="let user"> 
+                <span class="role-badge" [ngClass]="user?.role?.toLowerCase() || ''">
+                  {{user?.role}}
+                </span>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef> Actions </th>
+              <td mat-cell *matCellDef="let user">
+                <button mat-icon-button color="warn" (click)="deleteUser(user.profileId)" [disabled]="user?.role === 'ADMIN'" matTooltip="Delete User">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="userColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: userColumns;"></tr>
+          </table>
+
+          <div *ngIf="!usersLoading && users.length === 0" class="empty-state">
+            <mat-icon class="large-icon">groups</mat-icon>
+            <p>No users found in the system.</p>
+          </div>
+        </div>
+      </ng-template>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>
