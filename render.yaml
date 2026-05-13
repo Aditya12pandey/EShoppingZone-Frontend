@@ -4,7 +4,6 @@ services:
     runtime: static
     buildCommand: npm install && npm run build -- --configuration production
     staticPublishPath: ./dist/eshoppingzone-frontend/browser
-    plan: free
     routes:
       - type: rewrite
         source: /*
