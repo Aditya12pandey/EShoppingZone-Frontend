@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: eshoppingzone-frontend
+    runtime: static
+    buildCommand: npm install && npm run build -- --configuration production
+    staticPublishPath: ./dist/eshoppingzone-frontend/browser
+    plan: free

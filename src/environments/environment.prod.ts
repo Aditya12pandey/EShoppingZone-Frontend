@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
-  profileApi: 'https://eshoppingzone-profile.up.railway.app', // Placeholder URLs per handoff
-  productApi: 'https://eshoppingzone-product.up.railway.app',
-  cartApi: 'https://eshoppingzone-cart.up.railway.app',
-  orderApi: 'https://eshoppingzone-order.up.railway.app',
-  walletApi: 'https://eshoppingzone-wallet.up.railway.app',
+  profileApi: 'https://eshoppingzone-profile.onrender.com',
+  productApi: 'https://eshoppingzone-product.onrender.com',
+  cartApi: 'https://eshoppingzone-cart.onrender.com',
+  orderApi: 'https://eshoppingzone-order.onrender.com',
+  walletApi: 'https://eshoppingzone-wallet.onrender.com',
 };
