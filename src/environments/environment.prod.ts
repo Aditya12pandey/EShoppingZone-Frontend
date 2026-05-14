@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
-  profileApi: 'http://localhost:5001', // Placeholder URLs per handoff
-  productApi: 'http://localhost:5002',
-  cartApi: 'http://localhost:5003',
-  orderApi: 'http://localhost:5004',
-  walletApi: 'http://localhost:5005',
+  profileApi: 'https://eshoppingzone-profile.onrender.com',
+  productApi: 'https://eshoppingzone-product.onrender.com',
+  cartApi: 'https://eshoppingzone-cart.onrender.com',
+  orderApi: 'https://eshoppingzone-order.onrender.com',
+  walletApi: 'https://eshoppingzone-wallet.onrender.com',
 };
