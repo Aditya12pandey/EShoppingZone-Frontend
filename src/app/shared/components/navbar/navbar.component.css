@@ -2,31 +2,93 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: box-shadow 0.25s ease, background 0.25s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.navbar.scrolled {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+  background: rgba(8, 12, 24, 0.97) !important;
 }
 
 .nav-container {
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
+  gap: 4px;
 }
 
+/* Brand logo */
 .brand-logo {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 1.5rem;
-  font-weight: bold;
   text-decoration: none;
   color: inherit;
+  transition: opacity 0.2s ease;
+}
+.brand-logo:hover { opacity: 0.85; }
+
+.brand-icon {
+  color: var(--accent-color);
+  font-size: 26px;
+  height: 26px;
+  width: 26px;
+  transition: color 0.2s ease;
+}
+.brand-logo:hover .brand-icon { color: var(--primary-hover); }
+
+.brand-text {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #f0f6ff;
+  letter-spacing: -0.3px;
 }
 
-.spacer {
-  flex: 1 1 auto;
+.spacer { flex: 1 1 auto; }
+
+/* Nav links */
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+  font-size: 0.88rem;
+  color: var(--text-secondary) !important;
+  transition: color 0.2s ease !important;
+  position: relative;
+  padding-bottom: 2px;
+}
+.nav-link mat-icon { font-size: 18px; height: 18px; width: 18px; }
+.nav-link:hover { color: var(--text-primary) !important; }
+
+/* Active route — glowing underline */
+.nav-active {
+  color: var(--primary-color) !important;
+}
+.nav-active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 8px;
+  right: 8px;
+  height: 2px;
+  background: var(--primary-color);
+  border-radius: 2px;
 }
 
-a[mat-button] {
-  margin: 0 4px;
+/* Register button */
+.register-btn {
+  margin-left: 8px;
+  font-weight: 600;
 }
+
+/* User icon button */
+.user-btn {
+  margin-left: 4px;
+  color: var(--text-secondary) !important;
+  transition: color 0.2s ease !important;
+}
+.user-btn:hover { color: var(--primary-color) !important; }

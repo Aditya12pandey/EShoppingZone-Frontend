@@ -89,14 +89,18 @@ export class WalletComponent implements OnInit {
     });
   }
 
+  setAmount(amount: number): void {
+    this.topUpForm.patchValue({ amount });
+  }
+
   private openRazorpay(orderInfo: any, amount: number) {
     const options = {
       key: orderInfo.keyId,
-      amount: orderInfo.amount,           // amount in paise (from backend)
+      amount: orderInfo.amount,
       currency: orderInfo.currency || 'INR',
       name: "EShoppingZone Wallet",
       description: "Wallet Top-up",
-      order_id: orderInfo.razorpayOrderId, // ✅ correct field from backend
+      order_id: orderInfo.razorpayOrderId,
       handler: (response: any) => {
         this.loading = true;
         const verificationData = {
@@ -118,9 +122,7 @@ export class WalletComponent implements OnInit {
           }
         });
       },
-      theme: {
-        color: "#f43f5e"
-      }
+      theme: { color: "#4f9eff" }
     };
 
     const rzp = new Razorpay(options);
@@ -130,3 +132,4 @@ export class WalletComponent implements OnInit {
     rzp.open();
   }
 }
+

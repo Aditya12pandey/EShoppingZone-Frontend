@@ -1,38 +1,43 @@
 <div class="auth-container">
-  <mat-card class="glass-card auth-card">
-    <mat-card-header>
-      <mat-card-title>Welcome Back</mat-card-title>
-      <mat-card-subtitle>Login to your EShoppingZone account</mat-card-subtitle>
-    </mat-card-header>
+  <mat-card class="auth-card">
 
-    <mat-card-content>
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="emailId" placeholder="Ex. user@example.com" autocomplete="username">
-          <mat-icon matSuffix>email</mat-icon>
-          <mat-error *ngIf="loginForm.get('emailId')?.hasError('required')">Email is required</mat-error>
-          <mat-error *ngIf="loginForm.get('emailId')?.hasError('email')">Please enter a valid email address</mat-error>
-        </mat-form-field>
+    <!-- Header -->
+    <div class="auth-header">
+      <mat-icon class="auth-icon">shopping_bag</mat-icon>
+      <h1 class="auth-title">Welcome Back</h1>
+      <p class="auth-subtitle">Login to your EShoppingZone account</p>
+    </div>
 
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Password</mat-label>
-          <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" autocomplete="current-password">
-          <button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
-            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Password is required</mat-error>
-        </mat-form-field>
+    <!-- Form -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="emailId" placeholder="user@example.com">
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-error *ngIf="loginForm.get('emailId')?.hasError('required')">Email is required</mat-error>
+        <mat-error *ngIf="loginForm.get('emailId')?.hasError('email')">Please enter a valid email</mat-error>
+      </mat-form-field>
 
-        <button mat-flat-button color="primary" type="submit" class="full-width submit-btn" [disabled]="loginForm.invalid || loading">
-          <mat-icon *ngIf="loading" class="spinner">sync</mat-icon>
-          {{ loading ? 'Logging in...' : 'Login' }}
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+        <button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
+          [attr.aria-label]="'Toggle password'" [attr.aria-pressed]="hidePassword">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
-      </form>
-    </mat-card-content>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Password is required</mat-error>
+      </mat-form-field>
 
-    <mat-card-actions class="auth-actions">
-      <p>Don't have an account? <a routerLink="/register">Register here</a></p>
-    </mat-card-actions>
+      <button mat-flat-button color="primary" type="submit" class="submit-btn"
+        [disabled]="loginForm.invalid || loading">
+        <mat-icon *ngIf="loading" class="spinner">sync</mat-icon>
+        {{ loading ? 'Logging in...' : 'Login' }}
+      </button>
+    </form>
+
+    <!-- Footer -->
+    <div class="auth-footer">
+      Don't have an account? <a routerLink="/register">Register here</a>
+    </div>
   </mat-card>
 </div>

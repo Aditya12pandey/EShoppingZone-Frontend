@@ -1,9 +1,9 @@
 <div class="checkout-container">
-  <h1>Checkout</h1>
+  <h1 class="page-title">Checkout</h1>
 
   <div class="checkout-layout" *ngIf="cart">
     <div class="stepper-section">
-      <mat-stepper orientation="vertical" [linear]="true" #stepper class="glass-card">
+      <mat-stepper orientation="vertical" [linear]="true" #stepper>
         
         <!-- Step 1: Delivery Address -->
         <mat-step [stepControl]="addressForm">
@@ -13,17 +13,20 @@
             <div class="form-grid">
               <mat-form-field appearance="fill">
                 <mat-label>Full Name</mat-label>
-                <input matInput formControlName="fullName" required>
+                <input matInput formControlName="fullName" required placeholder="John Doe">
+                <mat-icon matSuffix>person</mat-icon>
               </mat-form-field>
               
               <mat-form-field appearance="fill">
                 <mat-label>Mobile Number</mat-label>
-                <input matInput formControlName="mobileNumber" required>
+                <input matInput formControlName="mobileNumber" required placeholder="9876543210">
+                <mat-icon matSuffix>phone</mat-icon>
               </mat-form-field>
 
               <mat-form-field appearance="fill" class="full-width">
                 <mat-label>Street Name / Flat No.</mat-label>
-                <input matInput formControlName="flatNumber" required>
+                <input matInput formControlName="flatNumber" required placeholder="123, Luxury Apartments">
+                <mat-icon matSuffix>home</mat-icon>
               </mat-form-field>
 
               <mat-form-field appearance="fill">
@@ -42,8 +45,8 @@
               </mat-form-field>
             </div>
 
-            <div>
-              <button mat-flat-button color="primary" matStepperNext [disabled]="addressForm.invalid">Next</button>
+            <div class="stepper-actions">
+              <button mat-flat-button color="primary" matStepperNext [disabled]="addressForm.invalid">Next Step</button>
             </div>
           </form>
         </mat-step>
@@ -55,13 +58,13 @@
             
             <mat-radio-group formControlName="modeOfPayment" class="payment-options">
               <mat-radio-button value="COD" class="payment-option">Cash on Delivery (COD)</mat-radio-button>
-              <mat-radio-button value="EWALLET" class="payment-option">E-Wallet</mat-radio-button>
+              <mat-radio-button value="EWALLET" class="payment-option">E-Wallet Balance</mat-radio-button>
               <mat-radio-button value="ONLINE" class="payment-option">Online Payment (Razorpay)</mat-radio-button>
             </mat-radio-group>
 
             <div class="stepper-actions">
               <button mat-button matStepperPrevious>Back</button>
-              <button mat-flat-button color="primary" matStepperNext [disabled]="paymentForm.invalid">Next</button>
+              <button mat-flat-button color="primary" matStepperNext [disabled]="paymentForm.invalid">Review Order</button>
             </div>
           </form>
         </mat-step>
@@ -71,14 +74,14 @@
           <ng-template matStepLabel>Review & Place Order</ng-template>
           
           <div class="review-section">
-            <h3>Delivery To:</h3>
+            <h3>DELIVERY ADDRESS</h3>
             <p>{{ addressForm.value.fullName }}<br>
                {{ addressForm.value.flatNumber }}, {{ addressForm.value.city }},<br>
                {{ addressForm.value.state }} - {{ addressForm.value.pincode }}<br>
                Mobile: {{ addressForm.value.mobileNumber }}
             </p>
 
-            <h3>Payment Mode:</h3>
+            <h3>PAYMENT METHOD</h3>
             <p class="highlight-payment">{{ paymentForm.value.modeOfPayment }}</p>
           </div>
 
@@ -86,7 +89,7 @@
             <button mat-button matStepperPrevious>Back</button>
             <button mat-flat-button color="accent" (click)="placeOrder()" [disabled]="loading">
               <mat-icon *ngIf="loading" class="spinner">sync</mat-icon>
-              {{ loading ? 'Processing...' : (paymentForm.value.modeOfPayment === 'ONLINE' ? 'Pay Now' : 'Place Order') }}
+              {{ loading ? 'Processing...' : (paymentForm.value.modeOfPayment === 'ONLINE' ? 'Pay & Place Order' : 'Confirm Order') }}
             </button>
           </div>
         </mat-step>
@@ -95,18 +98,20 @@
     </div>
 
     <!-- Order Summary Sidebar -->
-    <div class="summary-section glass-card">
-      <h3>Order Summary</h3>
+    <div class="summary-section">
+      <h3 class="summary-title">Order Summary</h3>
       <div class="summary-items">
         <div class="summary-item" *ngFor="let item of cart.items">
           <span class="item-name">{{ item.quantity }}x {{ item.productName }}</span>
-          <span class="item-price">{{ (item.price * item.quantity) | currency:'INR' }}</span>
+          <span class="item-price">{{ (item.price * item.quantity) | currency:'INR':'symbol':'1.0-0' }}</span>
         </div>
       </div>
-      <mat-divider></mat-divider>
+      
+      <mat-divider style="border-color: rgba(255,255,255,0.08)"></mat-divider>
+      
       <div class="summary-total">
-        <span>Total Amount</span>
-        <span>{{ cart.totalPrice | currency:'INR' }}</span>
+        <span>Total Payable</span>
+        <span class="total-amount">{{ cart.totalPrice | currency:'INR':'symbol':'1.0-0' }}</span>
       </div>
     </div>
   </div>

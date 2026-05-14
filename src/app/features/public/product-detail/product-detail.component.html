@@ -1,28 +1,37 @@
 <div class="detail-container">
+
+  <!-- Loading -->
   <div *ngIf="loading" class="loading-state">
     <mat-icon class="spinner">sync</mat-icon>
     <p>Loading product details...</p>
   </div>
 
   <div *ngIf="!loading && product" class="product-layout">
-    <div class="image-section glass-card">
-      <img [src]="product.image[0] || 'https://via.placeholder.com/600x600?text=No+Image'" [alt]="product.productName">
+
+    <!-- Image Section -->
+    <div class="image-section">
+      <img
+        [src]="product.image[0] || 'https://placehold.co/600x500/1a2d5a/4f9eff?text=No+Image'"
+        [alt]="product.productName"
+      />
     </div>
-    
-    <div class="info-section glass-card">
+
+    <!-- Info Section -->
+    <div class="info-section">
       <mat-chip-listbox>
         <mat-chip color="primary" selected>{{ product.category }}</mat-chip>
       </mat-chip-listbox>
-      
+
       <h1>{{ product.productName }}</h1>
-      <p class="price">{{ product.price | currency:'INR' }}</p>
-      
+      <p class="price">{{ product.price | currency:'INR':'symbol':'1.0-0' }}</p>
+
       <p class="description">{{ product.description }}</p>
-      
+
       <mat-divider></mat-divider>
-      
-      <div class="specifications">
-        <h3>Specifications</h3>
+
+      <!-- Specifications -->
+      <div class="specifications" *ngIf="getSpecs().length > 0">
+        <h3>SPECIFICATIONS</h3>
         <table class="spec-table">
           <tbody>
             <tr *ngFor="let spec of getSpecs()">
@@ -33,12 +42,26 @@
         </table>
       </div>
 
+      <!-- Quantity Selector -->
+      <div class="qty-section">
+        <span class="qty-label">Quantity:</span>
+        <div class="qty-control">
+          <button class="qty-btn" (click)="decreaseQty()" [disabled]="selectedQty <= 1">−</button>
+          <span class="qty-value">{{ selectedQty }}</span>
+          <button class="qty-btn" (click)="increaseQty()">+</button>
+        </div>
+      </div>
+
+      <!-- Actions -->
       <div class="actions">
         <button mat-flat-button color="accent" class="add-btn" (click)="addToCart()">
           <mat-icon>shopping_cart</mat-icon>
           Add to Cart
         </button>
-        <a mat-stroked-button routerLink="/">Back to Products</a>
+        <a mat-stroked-button routerLink="/" class="back-btn">
+          <mat-icon>arrow_back</mat-icon>
+          Back
+        </a>
       </div>
     </div>
   </div>

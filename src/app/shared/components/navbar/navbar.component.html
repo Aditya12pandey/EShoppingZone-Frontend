@@ -1,42 +1,52 @@
-<mat-toolbar color="primary" class="navbar">
+<mat-toolbar color="primary" class="navbar" [class.scrolled]="isScrolled">
   <div class="nav-container">
     <a routerLink="/" class="brand-logo">
-      <mat-icon>shopping_cart</mat-icon>
-      EShoppingZone
+      <mat-icon class="brand-icon">shopping_bag</mat-icon>
+      <span class="brand-text">EShoppingZone</span>
     </a>
 
     <span class="spacer"></span>
 
     <!-- Public Links -->
-    <a mat-button routerLink="/">Products</a>
+    <a mat-button routerLink="/" routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">
+      <mat-icon>storefront</mat-icon> Products
+    </a>
 
     <!-- Customer Links -->
     <ng-container *ngIf="authService.isLoggedIn() && authService.getRole() === 'CUSTOMER'">
-      <a mat-button routerLink="/cart">
-        <mat-icon>shopping_basket</mat-icon> Cart
+      <a mat-button routerLink="/cart" routerLinkActive="nav-active" class="nav-link cart-link">
+        <mat-icon>shopping_cart</mat-icon> Cart
       </a>
-      <a mat-button routerLink="/my-orders">My Orders</a>
-      <a mat-button routerLink="/wallet">Wallet</a>
+      <a mat-button routerLink="/my-orders" routerLinkActive="nav-active" class="nav-link">
+        <mat-icon>receipt_long</mat-icon> My Orders
+      </a>
+      <a mat-button routerLink="/wallet" routerLinkActive="nav-active" class="nav-link">
+        <mat-icon>account_balance_wallet</mat-icon> Wallet
+      </a>
     </ng-container>
 
     <!-- Merchant Links -->
     <ng-container *ngIf="authService.isLoggedIn() && authService.getRole() === 'MERCHANT'">
-      <a mat-button routerLink="/merchant/dashboard">Merchant Dashboard</a>
+      <a mat-button routerLink="/merchant/dashboard" routerLinkActive="nav-active" class="nav-link">
+        <mat-icon>dashboard</mat-icon> Merchant Dashboard
+      </a>
     </ng-container>
 
     <!-- Admin Links -->
     <ng-container *ngIf="authService.isLoggedIn() && authService.getRole() === 'ADMIN'">
-      <a mat-button routerLink="/admin/dashboard">Admin Dashboard</a>
+      <a mat-button routerLink="/admin/dashboard" routerLinkActive="nav-active" class="nav-link">
+        <mat-icon>admin_panel_settings</mat-icon> Admin Dashboard
+      </a>
     </ng-container>
 
     <!-- Auth Links -->
     <ng-container *ngIf="!authService.isLoggedIn()">
-      <a mat-button routerLink="/login">Login</a>
-      <a mat-raised-button color="accent" routerLink="/register">Register</a>
+      <a mat-button routerLink="/login" routerLinkActive="nav-active" class="nav-link">Login</a>
+      <a mat-raised-button color="accent" routerLink="/register" class="register-btn">Register</a>
     </ng-container>
 
     <ng-container *ngIf="authService.isLoggedIn()">
-      <button mat-icon-button [matMenuTriggerFor]="userMenu">
+      <button mat-icon-button [matMenuTriggerFor]="userMenu" class="user-btn">
         <mat-icon>account_circle</mat-icon>
       </button>
       <mat-menu #userMenu="matMenu">

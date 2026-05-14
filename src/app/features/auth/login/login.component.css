@@ -8,54 +8,85 @@
 
 .auth-card {
   width: 100%;
-  max-width: 450px;
-  padding: 32px 24px;
+  max-width: 440px;
+  padding: 36px 28px;
+  background: rgba(17, 34, 64, 0.85) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.55) !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.auth-card:hover {
+  border-color: rgba(79,158,255,0.25) !important;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.7) !important;
 }
 
-mat-card-header {
+/* Header */
+.auth-header {
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
-mat-card-title {
-  font-size: 2rem;
-  font-weight: 700;
+.auth-icon {
+  font-size: 48px !important;
+  height: 48px !important;
+  width: 48px !important;
   color: var(--primary-color);
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
+.auth-title {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--heading-color) !important;
+  margin: 0 0 4px;
+}
+
+.auth-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Form fields */
 .full-width {
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 4px;
 }
 
+/* Submit button */
 .submit-btn {
-  margin-top: 16px;
-  padding: 12px 0;
-  font-size: 1.1rem;
+  margin-top: 20px !important;
+  width: 100% !important;
+  padding: 12px !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  border-radius: 10px !important;
+  letter-spacing: 0.3px;
+  transition: background 0.2s ease !important;
 }
 
-.auth-actions {
-  display: flex;
-  justify-content: center;
-  margin-top: 24px;
+/* Footer link */
+.auth-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
 }
-
-.auth-actions a {
-  color: var(--accent-color);
-  text-decoration: none;
+.auth-footer a {
+  color: var(--primary-color);
   font-weight: 600;
+  transition: color 0.2s ease;
 }
+.auth-footer a:hover { color: var(--primary-hover); }
 
-.auth-actions a:hover {
-  text-decoration: underline;
-}
-
+/* Loading spinner on button */
 .spinner {
   animation: spin 1s linear infinite;
-  margin-right: 8px;
+  margin-right: 6px;
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+  vertical-align: middle;
 }
-
-@keyframes spin {
-  100% { transform: rotate(360deg); }
-}
+@keyframes spin { 100% { transform: rotate(360deg); } }

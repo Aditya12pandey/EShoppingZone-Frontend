@@ -2,127 +2,196 @@
   padding: 24px 0;
 }
 
-h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 32px;
-  color: var(--primary-color);
+.page-title {
+  font-size: 2rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 28px !important;
+  color: var(--heading-color) !important;
 }
 
+/* ── Layout ── */
 .wallet-layout {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
 }
 
 @media (min-width: 992px) {
-  .wallet-layout {
-    flex-direction: row;
-    align-items: flex-start;
-  }
+  .wallet-layout { flex-direction: row; align-items: flex-start; }
 }
 
 .balance-section {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
-.statements-section {
-  flex: 2;
-}
+.statements-section { flex: 2; }
 
-.balance-card, .topup-card, .statements-card {
-  background: var(--surface-color) !important;
-  padding: 16px;
+/* ── Balance card ── */
+.balance-card {
+  background: linear-gradient(135deg, rgba(17,34,64,0.9) 0%, rgba(13,27,46,0.95) 100%) !important;
+  border: 1px solid rgba(79,158,255,0.2) !important;
+  border-radius: 14px !important;
+  padding: 24px !important;
+  text-align: center;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.balance-card:hover {
+  border-color: rgba(79,158,255,0.4) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6) !important;
 }
 
 .wallet-icon {
-  font-size: 40px;
-  height: 40px;
-  width: 40px;
-  color: var(--primary-color);
+  font-size: 44px !important;
+  height: 44px !important;
+  width: 44px !important;
+  color: var(--primary-color) !important;
   background: transparent !important;
+  margin-bottom: 8px;
 }
 
-mat-card-title {
-  color: var(--text-primary) !important;
-  font-size: 1.2rem;
-  margin-top: 8px;
+.balance-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 8px 0 4px;
 }
 
 .balance-amount {
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: 2.8rem;
+  font-weight: 800;
   color: var(--accent-color);
-  margin-top: 16px;
+  letter-spacing: -1px;
 }
 
-.topup-form {
-  margin-top: 16px;
+/* ── Top-up card ── */
+.topup-card {
+  background: rgba(17,34,64,0.8) !important;
+  border: 1px solid rgba(255,255,255,0.07) !important;
+  border-radius: 14px !important;
+  padding: 20px !important;
+  transition: border-color 0.25s ease;
+}
+.topup-card:hover { border-color: rgba(79,158,255,0.2) !important; }
+
+.topup-card-title {
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+  margin-bottom: 16px !important;
 }
 
-.full-width {
-  width: 100%;
+/* Quick-amount chips */
+.quick-amounts {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
 }
+
+.quick-chip {
+  background: rgba(79,158,255,0.1);
+  border: 1px solid rgba(79,158,255,0.2);
+  color: var(--primary-color);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.quick-chip:hover {
+  background: rgba(79,158,255,0.22);
+  border-color: var(--primary-color);
+}
+
+.topup-form { margin-top: 4px; }
+.full-width { width: 100%; }
 
 .topup-btn {
-  margin-top: 16px;
-  padding: 12px 0;
-  font-size: 1.1rem;
+  margin-top: 12px !important;
+  width: 100% !important;
+  padding: 10px !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+  border-radius: 8px !important;
+}
+
+/* ── Statements card ── */
+.statements-card {
+  background: rgba(17,34,64,0.8) !important;
+  border: 1px solid rgba(255,255,255,0.07) !important;
+  border-radius: 14px !important;
+  padding: 20px 24px !important;
+}
+
+.statements-title {
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  color: var(--text-primary) !important;
+  margin-bottom: 16px !important;
 }
 
 .statements-table {
   width: 100%;
   background: transparent !important;
-  margin-top: 16px;
 }
 
 th.mat-header-cell {
-  color: var(--text-secondary);
-  border-bottom-color: var(--glass-border);
+  color: var(--text-secondary) !important;
+  border-bottom-color: rgba(255,255,255,0.07) !important;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 td.mat-cell {
-  color: var(--text-primary);
-  border-bottom-color: var(--glass-border);
+  color: var(--text-primary) !important;
+  border-bottom-color: rgba(255,255,255,0.05) !important;
+  font-size: 0.9rem;
+  padding: 12px 8px !important;
 }
 
+tr.mat-row:hover td { background: rgba(255,255,255,0.03); }
+
+/* Transaction badges */
 .credit-badge {
-  background-color: rgba(76, 175, 80, 0.2);
-  color: #81c784;
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: 600;
+  background: rgba(34,197,94,0.12);
+  color: #4ade80;
+  border: 1px solid rgba(34,197,94,0.25);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
 }
 
 .debit-badge {
-  background-color: rgba(244, 67, 54, 0.2);
-  color: #e57373;
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: 600;
+  background: rgba(239,68,68,0.12);
+  color: #f87171;
+  border: 1px solid rgba(239,68,68,0.25);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
 }
 
-.credit-text {
-  color: #81c784 !important;
-  font-weight: 600;
-}
-
-.debit-text {
-  color: #e57373 !important;
-  font-weight: 600;
-}
+.credit-text { color: #4ade80 !important; font-weight: 700; }
+.debit-text  { color: #f87171 !important; font-weight: 700; }
 
 .no-statements {
-  padding: 32px 0;
+  padding: 40px 0;
   text-align: center;
   color: var(--text-secondary);
+  font-size: 0.95rem;
 }
 
+/* ── Loading ── */
 .loading-state {
   display: flex;
   flex-direction: column;
@@ -130,16 +199,6 @@ td.mat-cell {
   justify-content: center;
   padding: 64px;
   text-align: center;
-}
-
-.spinner {
-  font-size: 48px;
-  height: 48px;
-  width: 48px;
-  animation: spin 1s linear infinite;
-  margin-bottom: 16px;
-}
-
-@keyframes spin {
-  100% { transform: rotate(360deg); }
+  color: var(--text-secondary);
+  gap: 12px;
 }

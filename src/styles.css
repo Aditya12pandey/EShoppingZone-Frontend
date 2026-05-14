@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 html, body { 
   height: 100%; 
@@ -8,187 +8,186 @@ html, body {
 }
 
 :root {
-  --primary-color: #60a5fa; /* Blue 400 */
-  --accent-color: #38bdf8; /* Sky 400 */
-  --bg-gradient-start: #020617; /* Slate 950 */
-  --bg-gradient-end: #1e3a8a; /* Blue 900 */
-  --surface-color: rgba(30, 41, 59, 0.6); /* Slate 800 semi-transparent */
-  --text-primary: #ffffff;
-  --text-secondary: #cbd5e1; /* Slate 300 */
-  --heading-color: #e9d5ff; /* Lavender/Light Purple */
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  /* Dark base palette */
+  --bg-dark: #0a0f1e;
+  --bg-dark-2: #0d1b2e;
+  --bg-dark-3: #112240;
+
+  /* Surface layers */
+  --surface-dark: rgba(17, 34, 64, 0.85);
+  --surface-light: rgba(255, 255, 255, 0.07);
+  --surface-hover: rgba(255, 255, 255, 0.12);
+
+  /* Accent colors */
+  --primary-color: #4f9eff;
+  --primary-hover: #77b8ff;
+  --accent-color: #00d4ff;
+  --accent-hover: #33ddff;
+  --success-color: #22c55e;
+  --danger-color: #ef4444;
+  --warning-color: #f59e0b;
+
+  /* Text – always high contrast */
+  --text-primary: #f0f6ff;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --heading-color: #e2eeff;
+
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-accent: rgba(79, 158, 255, 0.35);
+
+  /* Shadows */
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.65);
+
+  /* Legacy aliases (used in older components) */
+  --bg-gradient-start: #0a0f1e;
+  --bg-gradient-end: #112240;
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
 }
 
 body {
-  background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+  background: linear-gradient(140deg, var(--bg-dark) 0%, var(--bg-dark-3) 60%, #0c1a35 100%);
   color: var(--text-primary);
   background-attachment: fixed;
+  min-height: 100vh;
 }
 
 a {
   color: var(--primary-color);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
 }
+a:hover { color: var(--primary-hover); }
 
-a:hover {
-  color: var(--accent-color);
-}
+/* ─── Box sizing ─── */
+* { box-sizing: border-box; }
 
-/* Global Text Visibility Overrides */
-* {
-  box-sizing: border-box;
-}
-
+/* ─── Headings ─── */
 h1, h2, h3, h4, h5, h6 {
   color: var(--heading-color) !important;
-  font-weight: 800 !important;
+  font-weight: 700 !important;
 }
 
-/* Ensure background-clip text doesn't show double text */
-.hero-section h1 {
-  color: transparent !important;
-}
+p { color: var(--text-primary); }
 
-p, span, div, td, th {
-  color: var(--text-primary);
-}
-
+/* ─── Layout ─── */
 .main-content {
   padding: 32px 24px;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   min-height: calc(100vh - 120px);
 }
 
-/* Angular Material Overrides for Light/Premium Theme */
-.mat-mdc-card {
-  background: var(--surface-color) !important;
+/* ─── Glass card ─── */
+.glass-card {
+  background: var(--surface-dark) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: 14px !important;
+  box-shadow: var(--shadow-card) !important;
   color: var(--text-primary) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover) !important;
+  border-color: var(--border-accent) !important;
 }
 
+/* ─── Hover utility ─── */
+.hover-lift {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ─── Angular Material Overrides ─── */
+.mat-mdc-card {
+  background: var(--surface-dark) !important;
+  color: var(--text-primary) !important;
+}
 .mat-mdc-card-title, .mat-mdc-card-subtitle {
   color: var(--text-primary) !important;
   font-weight: 700 !important;
 }
 
-/* Fix for Mat-Tab Labels */
+.mat-toolbar.mat-primary {
+  background: rgba(10, 15, 30, 0.92) !important;
+  backdrop-filter: blur(12px);
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* Mat-Tabs */
 ::ng-deep .mat-mdc-tab .mdc-tab__text-label {
   color: var(--text-secondary) !important;
   font-weight: 600;
 }
-
 ::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
   color: var(--primary-color) !important;
   font-weight: 700;
 }
-
 ::ng-deep .mat-mdc-tab-header {
-  border-bottom: 1px solid var(--glass-border) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
 }
-
 ::ng-deep .mat-mdc-tab-group.mat-primary .mat-mdc-tab-links .mdc-tab-indicator__content--underline,
 ::ng-deep .mat-mdc-tab-group.mat-primary .mat-mdc-tab-nav-bar .mdc-tab-indicator__content--underline {
   border-color: var(--primary-color) !important;
 }
 
-.mat-toolbar.mat-primary {
-  background: rgba(15, 23, 42, 0.8) !important;
-  backdrop-filter: blur(10px);
-  color: var(--text-primary) !important;
-  border-bottom: 1px solid var(--glass-border);
-}
-
-/* Form Field Fixes */
-.mat-mdc-form-field-label {
-  color: var(--text-secondary) !important;
-}
-
+/* Form fields */
+.mat-mdc-form-field-label { color: var(--text-secondary) !important; }
 ::ng-deep .mat-mdc-text-field-wrapper {
-  background-color: rgba(255, 255, 255, 0.95) !important;
+  background-color: rgba(255,255,255,0.94) !important;
   border-radius: 4px 4px 0 0 !important;
 }
+.mat-mdc-input-element { color: #111827 !important; }
+::ng-deep .mat-mdc-select-value { color: #111827 !important; }
+::ng-deep .mat-mdc-select-arrow { color: var(--text-secondary) !important; }
 
-.mat-mdc-input-element {
-  color: #000000 !important;
-}
-
-::ng-deep .mat-mdc-select-value {
-  color: #000000 !important;
-}
-
-::ng-deep .mat-mdc-select-arrow {
-  color: var(--text-secondary) !important;
-}
-
+/* Dialogs & Menus */
 .mat-mdc-dialog-container .mdc-dialog__surface {
-  background-color: #0f172a !important;
+  background-color: var(--bg-dark-2) !important;
   color: var(--text-primary) !important;
 }
-
 .mat-mdc-menu-panel {
-  background-color: #0f172a !important;
-  border: 1px solid var(--glass-border) !important;
+  background-color: var(--bg-dark-2) !important;
+  border: 1px solid var(--border-subtle) !important;
 }
+.mat-mdc-menu-item .mdc-list-item__primary-text { color: var(--text-primary) !important; }
 
-.mat-mdc-menu-item .mdc-list-item__primary-text {
-  color: var(--text-primary) !important;
-}
-
-/* Select Dropdown Fixes */
-/* Select Dropdown Fixes */
+/* Select Dropdown */
 .mat-mdc-select-panel,
 .mdc-menu-surface.mat-mdc-select-panel {
-  background-color: #1e40af !important; /* Blue 800 */
-  background: #1e40af !important;
-  border: 1px solid var(--glass-border) !important;
+  background-color: #1a2d5a !important;
+  border: 1px solid var(--border-subtle) !important;
 }
+.mat-mdc-option { color: var(--text-primary) !important; }
+.mat-mdc-option .mdc-list-item__primary-text { color: var(--text-primary) !important; }
+.mat-mdc-option:hover:not(.mdc-list-item--disabled) { background-color: rgba(255,255,255,0.1) !important; }
+.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) { background-color: var(--primary-color) !important; }
 
-.mat-mdc-option {
-  color: var(--text-primary) !important;
-}
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-hover); }
 
-.mat-mdc-option .mdc-list-item__primary-text {
-  color: var(--text-primary) !important;
+/* ─── Spinner (loading icon) ─── */
+.spinner {
+  font-size: 42px; height: 42px; width: 42px;
+  animation: spin 1s linear infinite;
+  color: var(--primary-color);
 }
+@keyframes spin { 100% { transform: rotate(360deg); } }
 
-.mat-mdc-option:hover:not(.mdc-list-item--disabled) {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-}
-
-.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) {
-  background-color: var(--primary-color) !important;
-}
-
-/* Glassmorphism Classes */
-.glass-card {
-  background: var(--surface-color) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border) !important;
-  border-radius: 16px !important;
-  box-shadow: var(--glass-shadow) !important;
-  color: var(--text-primary) !important;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.glass-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.15) !important;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-gradient-start);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--primary-color);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-color);
-}
+/* ─── Status badges ─── */
+.badge-success { background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); padding: 3px 10px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; }
+.badge-danger  { background: rgba(239,68,68,0.15);  color: #f87171; border: 1px solid rgba(239,68,68,0.3);  padding: 3px 10px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; }
+.badge-warn    { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); padding: 3px 10px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; }

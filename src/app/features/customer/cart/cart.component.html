@@ -1,69 +1,77 @@
 <div class="cart-container">
-  <h1>Your Shopping Cart</h1>
+  <h1 class="page-title">Your Shopping Cart</h1>
 
+  <!-- Loading -->
   <div *ngIf="loading" class="loading-state">
     <mat-icon class="spinner">sync</mat-icon>
     <p>Loading your cart...</p>
   </div>
 
-  <div *ngIf="!loading && (!cart || !cart.items || cart.items.length === 0)" class="empty-state glass-card">
+  <!-- Empty state -->
+  <div *ngIf="!loading && (!cart || !cart.items || cart.items.length === 0)" class="empty-state">
     <mat-icon class="empty-icon">shopping_cart</mat-icon>
     <h2>Your cart is empty</h2>
     <p>Looks like you haven't added anything yet.</p>
-    <a mat-flat-button color="primary" routerLink="/">Start Shopping</a>
+    <a mat-flat-button color="primary" routerLink="/" class="shop-btn">Start Shopping</a>
   </div>
 
+  <!-- Cart content -->
   <div *ngIf="!loading && cart && cart.items && cart.items.length > 0" class="cart-layout">
-    <div class="cart-items-section glass-card">
-      <mat-list>
-        <div *ngFor="let item of cart.items; let last = last">
-          <mat-list-item class="cart-item">
-            <mat-icon matListItemIcon>inventory_2</mat-icon>
-            <div matListItemTitle class="item-title">{{ item.productName }}</div>
-            <div matListItemLine class="item-price">{{ item.price | currency:'INR' }}</div>
-            
-            <div class="item-actions">
-              <button mat-icon-button (click)="updateQuantity(item.productId, -1, item.quantity)">
-                <mat-icon>remove</mat-icon>
-              </button>
-              <span class="quantity">{{ item.quantity }}</span>
-              <button mat-icon-button (click)="updateQuantity(item.productId, 1, item.quantity)">
-                <mat-icon>add</mat-icon>
-              </button>
-            </div>
-            
-            <div class="item-total">
-              {{ (item.price * item.quantity) | currency:'INR' }}
-            </div>
-          </mat-list-item>
-          <mat-divider *ngIf="!last"></mat-divider>
+
+    <!-- Items panel -->
+    <div class="cart-items-section">
+      <div class="cart-item-row" *ngFor="let item of cart.items">
+        <mat-icon class="item-icon">inventory_2</mat-icon>
+
+        <div class="item-info">
+          <div class="item-name">{{ item.productName }}</div>
+          <div class="item-unit-price">{{ item.price | currency:'INR':'symbol':'1.0-0' }} each</div>
         </div>
-      </mat-list>
-      
-      <div class="cart-actions-bottom">
-        <button mat-stroked-button color="warn" (click)="clearCart()">Clear Cart</button>
+
+        <!-- Quantity stepper -->
+        <div class="qty-stepper">
+          <button class="qty-step-btn" (click)="updateQuantity(item.productId, -1, item.quantity)">
+            <mat-icon>remove</mat-icon>
+          </button>
+          <span class="qty-number">{{ item.quantity }}</span>
+          <button class="qty-step-btn" (click)="updateQuantity(item.productId, 1, item.quantity)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+
+        <div class="item-total">{{ (item.price * item.quantity) | currency:'INR':'symbol':'1.0-0' }}</div>
+      </div>
+
+      <div class="cart-bottom-actions">
+        <button mat-stroked-button class="clear-cart-btn" (click)="clearCart()">
+          <mat-icon>delete_sweep</mat-icon> Clear Cart
+        </button>
       </div>
     </div>
 
-    <div class="cart-summary-section glass-card">
-      <h3>Order Summary</h3>
-      <mat-divider></mat-divider>
+    <!-- Summary panel -->
+    <div class="cart-summary-section">
+      <h3 class="summary-title">Order Summary</h3>
+      <mat-divider class="summary-divider"></mat-divider>
+
       <div class="summary-row">
         <span>Items ({{ cart.items.length }}):</span>
-        <span>{{ cart.totalPrice | currency:'INR' }}</span>
+        <span>{{ cart.totalPrice | currency:'INR':'symbol':'1.0-0' }}</span>
       </div>
       <div class="summary-row">
         <span>Shipping:</span>
-        <span>Free</span>
+        <span class="free-label">FREE</span>
       </div>
-      <mat-divider></mat-divider>
-      <div class="summary-row total">
+
+      <mat-divider class="summary-divider"></mat-divider>
+
+      <div class="summary-row total-row">
         <span>Total:</span>
-        <span>{{ cart.totalPrice | currency:'INR' }}</span>
+        <span class="total-amount">{{ cart.totalPrice | currency:'INR':'symbol':'1.0-0' }}</span>
       </div>
-      
+
       <button mat-flat-button color="primary" class="checkout-btn" (click)="proceedToCheckout()">
-        Proceed to Checkout
+        <mat-icon>payment</mat-icon>&nbsp; Proceed to Checkout
       </button>
     </div>
   </div>

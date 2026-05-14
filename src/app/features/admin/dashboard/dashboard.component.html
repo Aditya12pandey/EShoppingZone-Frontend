@@ -1,37 +1,37 @@
 <div class="dashboard-container">
-  <h1>Admin Dashboard</h1>
+  <h1 class="page-title">Admin Control Panel</h1>
 
-  <mat-tab-group animationDuration="0ms" class="glass-card">
+  <mat-tab-group animationDuration="0ms">
     
-    <mat-tab label="Manage Orders">
+    <mat-tab label="System Orders">
       <ng-template matTabContent>
         <div class="tab-content">
-          <h2>All Orders</h2>
+          <h2 class="page-title" style="font-size: 1.5rem !important;">All Platform Orders</h2>
 
           <div *ngIf="ordersLoading" class="loading-container">
-            <mat-spinner diameter="40"></mat-spinner>
+            <mat-spinner diameter="40" strokeWidth="3"></mat-spinner>
           </div>
 
-          <table mat-table [dataSource]="orders" class="mat-elevation-z8 admin-table" *ngIf="!ordersLoading" [trackBy]="trackByOrderId">
+          <table mat-table [dataSource]="orders" class="admin-table" *ngIf="!ordersLoading" [trackBy]="trackByOrderId">
             
             <ng-container matColumnDef="orderId">
               <th mat-header-cell *matHeaderCellDef> Order ID </th>
-              <td mat-cell *matCellDef="let order"> {{order.orderId}} </td>
+              <td mat-cell *matCellDef="let order"> <strong>#{{order.orderId}}</strong> </td>
             </ng-container>
 
             <ng-container matColumnDef="customerId">
               <th mat-header-cell *matHeaderCellDef> Customer ID </th>
-              <td mat-cell *matCellDef="let order"> {{order.customerId}} </td>
+              <td mat-cell *matCellDef="let order"> <span style="font-family: monospace; color: var(--text-secondary)">{{order.customerId}}</span> </td>
             </ng-container>
 
             <ng-container matColumnDef="date">
               <th mat-header-cell *matHeaderCellDef> Date </th>
-              <td mat-cell *matCellDef="let order"> {{order.orderDate | date}} </td>
+              <td mat-cell *matCellDef="let order"> {{order.orderDate | date:'dd MMM yyyy'}} </td>
             </ng-container>
 
             <ng-container matColumnDef="amount">
               <th mat-header-cell *matHeaderCellDef> Amount </th>
-              <td mat-cell *matCellDef="let order"> {{order.amountPaid | currency:'INR'}} </td>
+              <td mat-cell *matCellDef="let order"> <span style="color: var(--accent-color); font-weight: 700;">{{order.amountPaid | currency:'INR':'symbol':'1.0-0'}}</span> </td>
             </ng-container>
 
             <ng-container matColumnDef="status">
@@ -44,7 +44,7 @@
             </ng-container>
 
             <ng-container matColumnDef="actions">
-              <th mat-header-cell *matHeaderCellDef> Actions </th>
+              <th mat-header-cell *matHeaderCellDef> Update Status </th>
               <td mat-cell *matCellDef="let order">
                 <mat-form-field appearance="outline" class="status-select">
                   <mat-select [value]="order.orderStatus" (selectionChange)="changeOrderStatus(order.orderId, $event)">
@@ -68,25 +68,25 @@
       </ng-template>
     </mat-tab>
 
-    <mat-tab label="Manage Users">
+    <mat-tab label="User Management">
       <ng-template matTabContent>
         <div class="tab-content">
-          <h2>All Users</h2>
+          <h2 class="page-title" style="font-size: 1.5rem !important;">Platform Users</h2>
 
           <div *ngIf="usersLoading" class="loading-container">
-            <mat-spinner diameter="40"></mat-spinner>
+            <mat-spinner diameter="40" strokeWidth="3"></mat-spinner>
           </div>
 
-          <table mat-table [dataSource]="users" class="mat-elevation-z8 admin-table" *ngIf="!usersLoading" [trackBy]="trackByProfileId">
+          <table mat-table [dataSource]="users" class="admin-table" *ngIf="!usersLoading" [trackBy]="trackByProfileId">
             
             <ng-container matColumnDef="profileId">
               <th mat-header-cell *matHeaderCellDef> ID </th>
-              <td mat-cell *matCellDef="let user"> {{user?.profileId}} </td>
+              <td mat-cell *matCellDef="let user"> <span style="font-family: monospace; color: var(--text-secondary)">{{user?.profileId}}</span> </td>
             </ng-container>
 
             <ng-container matColumnDef="fullName">
               <th mat-header-cell *matHeaderCellDef> Full Name </th>
-              <td mat-cell *matCellDef="let user"> {{user?.fullName}} </td>
+              <td mat-cell *matCellDef="let user"> <strong>{{user?.fullName}}</strong> </td>
             </ng-container>
 
             <ng-container matColumnDef="emailId">
@@ -107,7 +107,7 @@
               <th mat-header-cell *matHeaderCellDef> Actions </th>
               <td mat-cell *matCellDef="let user">
                 <button mat-icon-button color="warn" (click)="deleteUser(user.profileId)" [disabled]="user?.role === 'ADMIN'" matTooltip="Delete User">
-                  <mat-icon>delete</mat-icon>
+                  <mat-icon>person_remove</mat-icon>
                 </button>
               </td>
             </ng-container>

@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ProductService } from '../../../core/services/product.service';
 import { Product } from '../../../core/models/product.models';
 import { CartService } from '../../../core/services/cart.service';
@@ -15,13 +16,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatCardModule, MatButtonModule, MatIconModule, MatChipsModule, MatDividerModule],
+  imports: [CommonModule, RouterModule, MatCardModule, MatButtonModule, MatIconModule, MatChipsModule, MatDividerModule, MatTooltipModule],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })
 export class ProductDetailComponent implements OnInit {
   product: Product | null = null;
   loading = true;
+  selectedQty = 1;
 
   private route = inject(ActivatedRoute);
   private productService = inject(ProductService);
@@ -45,6 +47,9 @@ export class ProductDetailComponent implements OnInit {
     }
   }
 
+  increaseQty(): void { this.selectedQty++; }
+  decreaseQty(): void { if (this.selectedQty > 1) this.selectedQty--; }
+
   getSpecs(): { key: string, value: string }[] {
     if (!this.product?.specification) return [];
     try {
@@ -66,13 +71,13 @@ export class ProductDetailComponent implements OnInit {
       productId: this.product.productId,
       productName: this.product.productName,
       price: this.product.price,
-      quantity: 1,
+      quantity: this.selectedQty,
       merchantId: Number(this.product.merchantId)
     };
 
     this.cartService.addToCart(dto).subscribe({
       next: () => {
-        this.snackBar.open(`${this.product?.productName} added to cart`, 'Close', { duration: 3000 });
+        this.snackBar.open(`${this.product?.productName} ×${this.selectedQty} added to cart ✓`, 'Close', { duration: 2500 });
       },
       error: () => {
         this.snackBar.open('Failed to add to cart', 'Close', { duration: 3000 });
